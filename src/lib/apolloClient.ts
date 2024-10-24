@@ -11,6 +11,9 @@ const { GRAPHQL_URI } = getEnv();
 
 const httpLink = new HttpLink({
   uri: GRAPHQL_URI,
+  fetchOptions: {
+    next: { revalidate: 900 }, // revalidate at most every 15 minutes
+  },
 });
 
 const client = new ApolloClient({

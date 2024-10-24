@@ -1,0 +1,81 @@
+.launchDetail {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #ffffff;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.date {
+  font-size: 1.2rem;
+  color: #cccccc;
+  margin-bottom: 20px;
+}
+
+.missionPatch {
+  max-width: 200px;
+  margin-bottom: 20px;
+}
+
+.details {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.launchInfo {
+  background-color: #1e1e1e;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.videoLink {
+  display: inline-block;
+  background-color: #0070f3;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #0051a2;
+  }
+}
+
+.rocketButton {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #45a049;
+  }
+}
+
+.rocketDetails {
+  margin-top: 20px;
+  background-color: #1e1e1e;
+  padding: 15px;
+  border-radius: 8px;
+
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+}

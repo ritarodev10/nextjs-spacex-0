@@ -1,9 +1,11 @@
-import client from "@/lib/apolloClient";
-import { LATEST_LAUNCH_QUERY } from "./page.query";
+import { launchRepository } from "@/domain/repositories/launch.repository";
 import styles from "./page.module.scss"; // Ensure styles are imported
+import { RevalidationInfo } from "@/presentation/components/RevalidationInfo";
+
+export const revalidate = 900; // revalidate at most every 15 minutes
 
 export default async function Page() {
-  const { data } = await client.query({ query: LATEST_LAUNCH_QUERY });
+  const launch = await launchRepository.getLatestLaunch();
 
   return (
     <div className={styles.page}>
@@ -15,17 +17,17 @@ export default async function Page() {
         </p>
 
         <h2 className={styles.subtitle}>Latest SpaceX Launch</h2>
-        {data.launchLatest ? (
-          <div key={data.launchLatest.id} className={styles.launchDetails}>
-            <h3 className={styles.subheading}>{data.launchLatest.mission_name}</h3>
-            <p className={styles.paragraph}>{data.launchLatest.details}</p>
+        {launch ? (
+          <div key={launch.id} className={styles.launchDetails}>
+            <h3 className={styles.subheading}>{launch.missionName}</h3>
+            <p className={styles.paragraph}>{launch.details}</p>
             <p className={styles.paragraph}>
               <strong>Date:</strong>{" "}
-              {new Date(data.launchLatest.launch_date_utc).toLocaleDateString()}
+              {new Date(launch.launchDateUtc).toLocaleDateString()}
             </p>
-            {data.launchLatest.links?.video_link && (
+            {launch.videoLink && (
               <a
-                href={data.launchLatest.links?.video_link}
+                href={launch.videoLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.launchDetailsLink}
@@ -37,6 +39,7 @@ export default async function Page() {
         ) : (
           <p className={styles.paragraph}>Loading latest launch...</p>
         )}
+        <RevalidationInfo revalidationInterval={revalidate} />
       </div>
     </div>
   );

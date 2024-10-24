@@ -1,0 +1,1 @@
+export { RevalidationInfo } from "./RevalidationInfo";

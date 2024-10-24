@@ -1,40 +1,38 @@
-import client from "@/lib/apolloClient";
-import { GET_LAUNCHES } from "./Launches.query";
+import { launchRepository } from "@/domain/repositories/launch.repository";
 import styles from "./Launches.module.scss";
+import Image from "next/image";
 
 export const Launches = async () => {
-  const { data } = await client.query({
-    query: GET_LAUNCHES,
-  });
+  const launches = await launchRepository.getLaunches();
 
-  if (!data?.launches) {
+  if (!launches) {
     return <div>No launches found</div>;
   }
 
   return (
     <div className={styles.launchesContainer}>
-      {data?.launches
+      {launches
         .filter((launch): launch is NonNullable<typeof launch> =>
           Boolean(launch)
         )
         .map((launch) => (
           <div key={launch.id} className={styles.launchCard}>
-            {launch.links?.mission_patch && (
-              <img
-                src={launch.links?.mission_patch}
-                alt={`${launch.mission_name} mission patch`}
+            {launch.missionPatchUrl && (
+              <Image
+                src={launch.missionPatchUrl}
+                alt={`${launch.missionName} mission patch`}
                 className={styles.missionPatch}
               />
             )}
-            <h3 className={styles.launchTitle}>{launch.mission_name}</h3>
+            <h3 className={styles.launchTitle}>{launch.missionName}</h3>
             <p className={styles.launchDate}>
-              {new Date(launch.launch_date_utc).toLocaleDateString()}
+              {new Date(launch.launchDateUtc).toLocaleDateString()}
             </p>
-            <p className={styles.rocketName}>{launch.rocket?.rocket_name}</p>
+            <p className={styles.rocketName}>{launch.rocketName}</p>
             <div className={styles.linksContainer}>
-              {launch.links?.video_link && (
+              {launch.videoLink && (
                 <a
-                  href={launch.links?.video_link}
+                  href={launch.videoLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.link}
@@ -42,7 +40,6 @@ export const Launches = async () => {
                   Watch Launch
                 </a>
               )}
-              {/* TODO: Change this to a proper detail page */}
               <a href={`/launches/${launch.id}`} className={styles.link}>
                 View Details
               </a>

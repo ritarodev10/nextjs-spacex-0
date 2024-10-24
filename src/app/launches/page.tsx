@@ -1,6 +1,14 @@
-import { Launches } from '@/components/Launches';
-import React from 'react';
+import { Launches } from "@/presentation/components/Launches";
+import { RevalidationInfo } from "@/presentation/components/RevalidationInfo";
+import React from "react";
+
+export const revalidate = 900; // revalidate at most every 15 minutes
 
 export default function LaunchesPage() {
-  return <Launches />;
+  return (
+    <>
+      <RevalidationInfo revalidationInterval={revalidate} />
+      <Launches />
+    </>
+  );
 }
