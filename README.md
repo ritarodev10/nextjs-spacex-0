@@ -1,144 +1,103 @@
-# SpaceX Launches Project
+# SpaceX Launches Project - Completed Tasks
 
-## Overview
+This project has been successfully refactored and improved according to the given requirements. Here's a summary of the completed tasks and how to run the project.
 
-This project is a Next.js application that uses Apollo GraphQL and the public unofficial SpaceX GraphQL API. It provides an overview of recent SpaceX launches and allows users to view detailed information about each launch, including additional data about rockets associated with the launches.
+## How to Run the Project
 
-## Project Structure
+1. **Clone the repository**
 
-The main folders and their responsibilities are as follows:
+   ```
+   git clone <repository-url>
+   cd <project-directory>
+   ```
 
-```
-src/
-├── app/
-│   ├── api/
-│   │   └── healthcheck/       # API endpoints, e.g., for health check
-│   └── launches/
-│       └── [id]/
-├── components/
-│   ├── Launches/
-│   │   └── LaunchDetail/
-│   └── Navigation/
-├── domain/
-│   ├── entities/
-│   ├── repositories/
-│   └── mappers/
-├── lib/                       # Utility files, helpers, and Apollo client setup
-└── __generated__/             # Generated types for GraphQL queries
-```
+2. **Install dependencies**
 
-## Task Requirements
-
-Your task is to implement several features and improvements to the project codebase:
-
-### 1. **Refactoring for Better Structure**
-
-Refactor the current codebase to introduce a more maintainable architecture. You can consider using **domain objects**, or a **Repository-Mapper-Presentation** layers structure to make the code easier to adapt to future API changes. This will help keep the data-fetching logic separate from the presentation layer, making it more maintainable and modular. Separate requests and JSX code.
-
-### 2. **15-Minute Revalidation Time**
-
-Set up all pages to **revalidate every 15 minutes**. This ensures that the pages are statically generated but also refresh periodically to reflect any new data.
-
-### 3. **On-Demand Revalidation API Endpoint**
-
-Create an API endpoint to **trigger on-demand revalidation**. This endpoint should allow:
-
-- Revalidating specific pages based on their path.
-- Revalidating the entire website if needed.
-
-### 4. **Implement `LaunchDetail` Page**
-
-Use the existing GraphQL query in the `LaunchDetail` directory to build a page that dynamically loads SpaceX launch details based on the route parameters.
-
-- This page should be **dynamically routed** (`/launches/[id]`), with `[id]` representing the launch ID.
-
-### 5. **Extend `LaunchDetail` to Show Rocket Details**
-
-Enhance the `LaunchDetail` page to include **rocket information**:
-
-- Add a button to the page that triggers a client-side request to fetch and display the **rocket details**.
-- The rocket data should be dynamically fetched upon button click and **must not be part of the static HTML**.
-- You can find the necessary query for rocket details in the `Rocket.query.ts` file.
-
-### 6. **Static Generation of Pages**
-
-Ensure that all pages are **statically generated** at build time, except for the dynamic routes and rocket details fetched dynamically from the client.
-
-### 7. **Styling Guidelines**
-
-The styling of the project is not a primary focus, so keep it simple. Ensure that all text is readable and there are no console errors.
-
-### 8. **GraphQL Code Generation**
-
-Use the provided script to **generate TypeScript types** based on GraphQL queries. This helps maintain type safety and consistency across the project.
-
-- Run `npm run generate` whenever new queries or changes are made.
-- **Bonus**: Add an additional command to **watch for changes** and automatically generate types.
-
----
-
-## Evaluation Criteria
-
-The task will be evaluated on:
-
-- **Code Structure & Organization**: Clean, modular code that uses domain objects or layers for separation of concerns.
-- **Next.js Features & Data Flow**: Correct use of static generation with 15-minute revalidation and proper dynamic routes.
-- **Client-Server Interaction**: Effective use of server components and client-side fetching for dynamic data, ensuring a clear separation.
-- **TypeScript & GraphQL**: Proper type safety, usage of generated types, and utility types.
-- **Reusability & Scalability**: Code is adaptable to future API changes with minimal refactoring.
-- **Cleanliness**: Readable, well-organized code without errors.
-
-Bonus points for implementing a watch command for type generation, handling edge cases, and clear abstractions for API logic.
-
-## Additional Notes
-
-If any part of the task is unfamiliar or beyond your experience, please make your best effort. Completing the entire task is not mandatory; focus on demonstrating your understanding and implementation skills.
-
-**You have complete freedom in how you implement your solutions. While you're welcome to install additional libraries, please note that all requirements can be met without any extra installations. Your best resources here are the Next.js and React documentation.**
-
----
-
-## Getting Started
-
-1. **Install Dependencies**
-
-   ```bash
+   ```
    npm install
    ```
 
-2. **Generate Types for GraphQL Queries**
+3. **Generate GraphQL types**
 
-   ```bash
+   ```
    npm run generate
    ```
 
-3. **Run the Development Server**
+4. **Run the development server**
 
-   ```bash
+   ```
    npm run dev
    ```
 
-4. **Bonus - Automatically Watch and Generate Types**
-   (Optional) Add a script to your `package.json` to **watch for changes** and regenerate GraphQL types.
+5. **Open the application**
+   Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-5. **Build and Revalidate the Project**
-   To build and check the static generation and revalidation:
-   ```bash
+6. **Build for production**
+
+   ```
    npm run build
-   npm run start
    ```
 
-## Technologies Used
+7. **Run production server**
+   ```
+   npm start
+   ```
 
-- **Next.js** (with app router): Framework for server-side rendering and static site generation.
-- **Apollo Client**: A GraphQL client for fetching data.
-- **TypeScript**: Ensuring type safety across the project.
-- **SpaceX GraphQL API**: A public API providing data about SpaceX launches and rockets. You can read more about it here: https://studio.apollographql.com/public/SpaceX-pxxbxen/variant/current/home
+### Bonus: Watch for GraphQL Changes
 
----
+If you're actively developing and making changes to GraphQL queries, you can use the following command to automatically regenerate types when changes are detected:
 
-Feel free to reach out if you have any questions about the requirements or setup. Good luck! 🚀
+```
+npm run generate:watch
+```
 
----
+This command will watch for changes in your GraphQL files and automatically regenerate the types, saving you time during development.
 
-This `README.md` provides clear instructions for the task, project structure, and setup guidelines while highlighting the main requirements for the assignment. Let me know if any additional details or changes are needed!
+## Completed Tasks
+
+1. **Refactoring for Better Structure**: The codebase has been refactored to introduce a more maintainable architecture using domain objects and a Repository-Mapper-Presentation layers structure.
+
+2. **15-Minute Revalidation Time**: All pages are set up to revalidate every 15 minutes, ensuring that the statically generated pages refresh periodically to reflect new data.
+
+3. **On-Demand Revalidation API Endpoint**: An API endpoint has been created to trigger on-demand revalidation for specific pages or the entire website.
+
+4. **LaunchDetail Page Implementation**: A dynamically routed page (`/launches/[id]`) has been implemented to display SpaceX launch details based on the route parameters.
+
+5. **LaunchDetail Page Extension**: The LaunchDetail page now includes a button to fetch and display rocket information dynamically on the client-side.
+
+6. **Static Generation of Pages**: All pages are statically generated at build time, except for the dynamic routes and rocket details fetched dynamically from the client.
+
+7. **Styling**: Simple styling has been applied to ensure readability and avoid console errors.
+
+8. **GraphQL Code Generation**: TypeScript types are generated based on GraphQL queries, maintaining type safety and consistency across the project.
+
+## Testing Revalidation
+
+To test the revalidation functionality, you can use the following curl commands:
+
+1. Revalidate a specific page:
+
+   ```
+   curl -X POST "http://localhost:3000/api/revalidate?path=/launches/123"
+   ```
+
+2. Revalidate all pages:
+   ```
+   curl -X POST "http://localhost:3000/api/revalidate?all=true"
+   ```
+
+## Revalidation Info Component
+
+A `RevalidationInfo` component has been added to display information about the last revalidation time and the revalidation interval. This component is included on relevant pages to provide visibility into the revalidation process.
+
+## Project Structure
+
+The project now follows a clear structure with separate folders for domain entities, repositories, mappers, and presentation components. This separation of concerns makes the code more maintainable and easier to adapt to future API changes.
+
+## Next Steps
+
+- Review the implemented features and test thoroughly.
+- Consider adding more comprehensive error handling and loading states.
+- Explore opportunities for further optimization, such as implementing pagination for the launches list.
+
+Feel free to reach out if you have any questions or need further clarification on any of the implemented features.
