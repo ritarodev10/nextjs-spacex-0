@@ -41,12 +41,16 @@
   padding: 10px 15px;
   border-radius: 5px;
   text-decoration: none;
-  margin-bottom: 20px;
   transition: background-color 0.3s;
 
   &:hover {
     background-color: #0051a2;
   }
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 10px;
 }
 
 .rocketButton {

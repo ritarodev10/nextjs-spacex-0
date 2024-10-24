@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
 
   try {
     if (revalidateAll) {
-      revalidatePath("/");
+      revalidatePath("/", "layout");
       return NextResponse.json({
         revalidated: true,
         all: true,

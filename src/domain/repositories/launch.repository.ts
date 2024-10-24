@@ -3,7 +3,7 @@ import {
   LATEST_LAUNCH_QUERY,
   GET_LAUNCHES,
   GET_LAUNCH_DETAIL,
-} from "@/infrastructure/graphql";
+} from "@/domain/graphql";
 import {
   LatestLaunchQuery,
   GetLaunchesQuery,

@@ -1,5 +1,5 @@
 import client from "@/lib/apolloClient";
-import { GET_ROCKET } from "@/infrastructure/graphql";
+import { GET_ROCKET } from "@/domain/graphql";
 import {
   GetRocketQuery,
   GetRocketQueryVariables,

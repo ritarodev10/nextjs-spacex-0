@@ -10,7 +10,7 @@ interface LaunchDetailProps {
   launch: Awaited<ReturnType<typeof launchRepository.getLaunchDetail>>;
 }
 
-export const LaunchDetail = async ({ launch }: LaunchDetailProps) => {
+export const LaunchDetail = ({ launch }: LaunchDetailProps) => {
   const [rocketDetails, setRocketDetails] = useState<Awaited<
     ReturnType<typeof rocketRepository.getRocket>
   > | null>(null);
@@ -44,19 +44,21 @@ export const LaunchDetail = async ({ launch }: LaunchDetailProps) => {
         <p>Launch Success: {launch.launchSuccess ? "Yes" : "No"}</p>
         <p>Launch Site: {launch.launchSite?.siteNameLong}</p>
       </div>
-      {launch.videoLink && (
-        <a
-          href={launch.videoLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.videoLink}
-        >
-          Watch Launch Video
-        </a>
-      )}
-      <button onClick={fetchRocketDetails} className={styles.rocketButton}>
-        Show Rocket Details
-      </button>
+      <div className={styles.buttonContainer}>
+        {launch.videoLink && (
+          <a
+            href={launch.videoLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.videoLink}
+          >
+            Watch Launch Video
+          </a>
+        )}
+        <button onClick={fetchRocketDetails} className={styles.rocketButton}>
+          Show Rocket Details
+        </button>
+      </div>
       {rocketDetails && (
         <div className={styles.rocketDetails}>
           <h2>Rocket: {rocketDetails.name}</h2>

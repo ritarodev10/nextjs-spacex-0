@@ -1,8 +1,8 @@
 import { launchRepository } from "@/domain/repositories/launch.repository";
-import styles from "./page.module.scss"; // Ensure styles are imported
+import styles from "./page.module.scss";
 import { RevalidationInfo } from "@/presentation/components/RevalidationInfo";
 
-export const revalidate = 900; // revalidate at most every 15 minutes
+export const revalidate = 15 * 60;
 
 export default async function Page() {
   const launch = await launchRepository.getLatestLaunch();

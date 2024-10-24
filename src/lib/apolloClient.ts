@@ -5,14 +5,13 @@ import {
   SSRMultipartLink,
 } from "@apollo/experimental-nextjs-app-support";
 import { getEnv } from "./getEnv";
-// Import the generated types
 
 const { GRAPHQL_URI } = getEnv();
 
 const httpLink = new HttpLink({
   uri: GRAPHQL_URI,
   fetchOptions: {
-    next: { revalidate: 900 }, // revalidate at most every 15 minutes
+    next: { revalidate: 15 * 60 },
   },
 });
 
